@@ -1,8 +1,9 @@
 import json
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
+
 '''Скрипт импортирует необходимые модели данных '''
-from models import craate_tables, Publisher,Shop,Book,Stock,Sale
+from models import craate_tables, Publisher, Shop, Book, Stock, Sale
 
 '''Скрипт подключается к БД любого типа на ваш выбор.'''
 
@@ -17,24 +18,23 @@ session = Session()
 '''Скрипт заполняет БД из файла '''
 
 model = {
-            'publisher': Publisher,
-            'shop': Shop,
-            'book': Book,
-            'stock': Stock,
-            'sale': Sale
-        }
+    'publisher': Publisher,
+    'shop': Shop,
+    'book': Book,
+    'stock': Stock,
+    'sale': Sale
+}
 
 with open('tests_data.json', 'r') as file:
     data = json.load(file)
 
     for record in data:
-        session.add(model[record.get('model')](id= record.get('pk'), **record.get('fields')))
+        session.add(model[record.get('model')](id=record.get('pk'), **record.get('fields')))
         session.commit()
 
-''' Скрипт который выводит название магазина, где продается издатель (по id или имени'''
+''' Скрипт который выводит название магазина, где продается издатель (по id или имени)'''
 
 quer = input('Введите id или имя издателя :')
-answer = []
 print()
 print('Издатель продается в магазинах :', end=' ')
 
