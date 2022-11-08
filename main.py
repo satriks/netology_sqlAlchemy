@@ -1,6 +1,7 @@
 import json
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
+'''Скрипт импортирует необходимые модели данных '''
 from models import craate_tables, Publisher,Shop,Book,Stock,Sale
 
 '''Скрипт подключается к БД любого типа на ваш выбор.'''
@@ -13,7 +14,7 @@ craate_tables(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-'''Скрипт импортирует необходимые модели данных '''
+'''Скрипт заполняет БД из файла '''
 
 model = {
             'publisher': Publisher,
